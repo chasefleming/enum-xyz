@@ -1,14 +1,25 @@
 {
   "name": "xenum",
-  "version": "0.0.1",
+  "type": "module",
+  "version": "0.0.0",
   "description": "JavaScript enums using proxies.",
-  "main": "index.js",
-  "scripts": {
-    "test": "jest"
-  },
   "author": "Chase Fleming",
+  "source": "index.js",
+  "exports": {
+    "require": "./dist/xenum.cjs",
+    "default": "./dist/xenum.modern.js"
+  },
+  "main": "dist/xenum.js",
+  "module": "dist/xenum.module.js",
+  "unpkg": "dist/xenum.umd.js",
+  "scripts": {
+    "dev": "microbundle watch",
+    "test": "jest",
+    "build": "microbundle"
+  },
   "license": "ISC",
   "devDependencies": {
-    "jest": "^27.5.1"
+    "jest": "^27.5.1",
+    "microbundle": "^0.14.2"
   }
 }
