@@ -1,7 +1,7 @@
 {
   "name": "enum-xyz",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "JavaScript enums using proxies.",
   "homepage": "https://github.com/chasefleming/enum-xyz",
   "author": "Chase Fleming",
@@ -10,7 +10,7 @@
     "require": "./dist/enum-xyz.cjs",
     "default": "./dist/enum-xyz.modern.js"
   },
-  "main": "dist/enum-xyz.js",
+  "main": "dist/enum-xyz.cjs",
   "module": "dist/enum-xyz.module.js",
   "unpkg": "dist/enum-xyz.umd.js",
   "scripts": {
