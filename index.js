@@ -1,14 +1,10 @@
-const Constant = (() => {
-  return new Proxy({}, {
-    get: (_, name) => name
-  })
-})()
+const String = new Proxy({}, {
+  get: (_, name) => name
+})
 
-const StringLower = (() => {
-  return new Proxy({}, {
-    get: (_, name) => name.toLowerCase()
-  })
-})()
+const StringLower = new Proxy({}, {
+  get: (_, name) => name.toLowerCase()
+})
 
 const Numeric = (() => {
   const arr = []
@@ -32,4 +28,4 @@ const NumericAt = (startIndex) => {
   })
 }
 
-module.exports = {Constant, String: Constant, StringLower, Numeric, NumericAt}
+module.exports = {String, StringLower, Numeric, NumericAt}

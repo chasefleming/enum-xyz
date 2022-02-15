@@ -1,12 +1,5 @@
 const Xenum = require('./index')
 
-test('creates enum constants', () => {
-  const { Up, Down } = Xenum.Constant
-
-  expect(Up).toBe(Up)
-  expect(Down).toBe(Down)
-})
-
 test('creates enum and assigns strings', () => {
   const { Summer, Autumn, Winter, Spring } = Xenum.String
 
