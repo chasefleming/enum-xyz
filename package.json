@@ -1,7 +1,7 @@
 {
   "name": "enum-xyz",
   "type": "module",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "JavaScript enums using proxies.",
   "homepage": "https://github.com/chasefleming/enum-xyz",
   "author": "Chase Fleming",
