@@ -3,6 +3,7 @@
   "type": "module",
   "version": "0.0.0",
   "description": "JavaScript enums using proxies.",
+  "homepage": "https://github.com/chasefleming/enum-xyz",
   "author": "Chase Fleming",
   "source": "index.js",
   "exports": {
@@ -15,7 +16,8 @@
   "scripts": {
     "dev": "microbundle watch",
     "test": "jest",
-    "build": "microbundle"
+    "build": "microbundle",
+    "publish": "npm run build && npm publish"
   },
   "license": "ISC",
   "devDependencies": {
