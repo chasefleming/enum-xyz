@@ -1,10 +1,14 @@
 {
   "name": "enum-xyz",
   "type": "module",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "JavaScript enums using proxies.",
   "homepage": "https://github.com/chasefleming/enum-xyz",
   "author": "Chase Fleming",
+  "keywords": [
+    "enum",
+    "proxy"
+  ],
   "source": "index.js",
   "exports": {
     "require": "./dist/enum-xyz.cjs",
