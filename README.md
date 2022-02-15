@@ -1,4 +1,4 @@
-# Xenum
+# enum-xyz
 
 JavaScript enums using proxies.
 
@@ -7,28 +7,17 @@ JavaScript enums using proxies.
 ## Install
 
 ```
-$ npm install xenum --save
+$ npm install enum-xyz --save
 ```
 
 ## Usage
 
-### Constants
-
-```
-const Xenum = require('./index')
-
-const { Up, Down } = Xenum.Constant
-
-console.log(Up) // Up
-console.log(Down) // Down
-```
-
 ### Strings
 
 ```
-const Xenum = require('./index')
+const Enum = require('./index')
 
-const { Summer, Autumn, Winter, Spring } = Xenum.String
+const { Summer, Autumn, Winter, Spring } = Enum.String
 
 console.log(Summer) // 'Summer'
 console.log(Autumn) // 'Autumn'
@@ -39,9 +28,9 @@ console.log(Spring) // 'Spring'
 ### Strings (lowercased)
 
 ```
-const Xenum = require('./index')
+const Enum = require('./index')
 
-const { Summer, Autumn, Winter, Spring } = Xenum.StringLower
+const { Summer, Autumn, Winter, Spring } = Enum.StringLower
 
 console.log(Summer) // 'summer'
 console.log(Autumn) // 'autumn'
@@ -52,9 +41,9 @@ console.log(Spring) // 'spring'
 ### Numeric
 
 ```
-const Xenum = require('./index')
+const Enum = require('./index')
 
-const { A, B, C, D } = Xenum.String
+const { A, B, C, D } = Enum.String
 
 console.log(A) // 0
 console.log(B) // 1
@@ -65,9 +54,9 @@ console.log(D) // 3
 ### Numeric Starting at Index
 
 ```
-const Xenum = require('./index')
+const Enum = require('./index')
 
-const { A, B, C, D } = Xenum.NumericAt(1)
+const { A, B, C, D } = Enum.NumericAt(1)
 
 console.log(A) // 1
 console.log(B) // 2

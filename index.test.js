@@ -1,7 +1,7 @@
-const Xenum = require('./index')
+const Enum = require('./index')
 
 test('creates enum and assigns strings', () => {
-  const { Summer, Autumn, Winter, Spring } = Xenum.String
+  const { Summer, Autumn, Winter, Spring } = Enum.String
 
   expect(Summer).toEqual('Summer')
   expect(Autumn).toEqual('Autumn')
@@ -10,7 +10,7 @@ test('creates enum and assigns strings', () => {
 })
 
 test('creates enum and assigns strings', () => {
-  const { Summer, Autumn, Winter, Spring } = Xenum.StringLower
+  const { Summer, Autumn, Winter, Spring } = Enum.StringLower
 
   expect(Summer).toEqual('summer')
   expect(Autumn).toEqual('autumn')
@@ -19,7 +19,7 @@ test('creates enum and assigns strings', () => {
 })
 
 test('creates enum and assigns numeric value', () => {
-  const { A, B, C, D } = Xenum.Numeric
+  const { A, B, C, D } = Enum.Numeric
 
   expect(A).toBe(0)
   expect(B).toBe(1)
@@ -28,7 +28,7 @@ test('creates enum and assigns numeric value', () => {
 })
 
 test('creates enum and assigns numeric value starting at index of choice', () => {
-  const { A, B, C, D } = Xenum.NumericAt(1)
+  const { A, B, C, D } = Enum.NumericAt(1)
 
   expect(A).toBe(1)
   expect(B).toBe(2)

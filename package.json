@@ -1,17 +1,17 @@
 {
-  "name": "xenum",
+  "name": "enum-xyz",
   "type": "module",
   "version": "0.0.0",
   "description": "JavaScript enums using proxies.",
   "author": "Chase Fleming",
   "source": "index.js",
   "exports": {
-    "require": "./dist/xenum.cjs",
-    "default": "./dist/xenum.modern.js"
+    "require": "./dist/enum-xyz.cjs",
+    "default": "./dist/enum-xyz.modern.js"
   },
-  "main": "dist/xenum.js",
-  "module": "dist/xenum.module.js",
-  "unpkg": "dist/xenum.umd.js",
+  "main": "dist/enum-xyz.js",
+  "module": "dist/enum-xyz.module.js",
+  "unpkg": "dist/enum-xyz.umd.js",
   "scripts": {
     "dev": "microbundle watch",
     "test": "jest",
