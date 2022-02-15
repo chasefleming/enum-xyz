@@ -60,6 +60,6 @@ const { A, B, C, D } = Enum.NumericAt(1)
 
 console.log(A) // 1
 console.log(B) // 2
-console.log(C) // 4
+console.log(C) // 3
 console.log(D) // 4
 ```
