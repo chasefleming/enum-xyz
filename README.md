@@ -43,7 +43,7 @@ console.log(Spring) // 'spring'
 ```
 import Enum from 'enum-xyz'
 
-const { A, B, C, D } = Enum.String
+const { A, B, C, D } = Enum.Numeric
 
 console.log(A) // 0
 console.log(B) // 1
