@@ -1,31 +1,29 @@
-const String = new Proxy({}, {
-  get: (_, name) => name
-})
-
-const StringLower = new Proxy({}, {
-  get: (_, name) => name.toLowerCase()
-})
-
-const Numeric = (() => {
-  const arr = []
-  
-  return new Proxy({}, {
-    get: (_, name) => {
-      arr.push(name)
-      return arr.indexOf(name)
+/**
+ * @template Value
+ * @param {(name: string) => Value} mapper
+ * @returns {{ [name: string]: Value }}
+ */
+const Values = (mapper) =>
+  new Proxy(
+    {},
+    {
+      /** @param {string} name */
+      get: (_, name) => mapper(name),
     }
-  })
-})()
+  )
 
-const NumericAt = (startIndex) => {
-  const arr = [...Array(startIndex).keys()]
-  
-  return new Proxy({}, {
-    get: (_, name) => {
-      arr.push(name)
-      return arr.indexOf(name)
-    }
+const Strings = Values((name) => name)
+
+const LowerCased = Values((name) => name.toLowerCase())
+
+const Symbols = Values(Symbol)
+
+const Integers = (startIndex = 0) => {
+  const indexOfName = new Map()
+  return Values((name) => {
+    indexOfName.set(name, indexOfName.size + startIndex)
+    return indexOfName.get(name)
   })
 }
 
-module.exports = {String, StringLower, Numeric, NumericAt}
+export { Values, Strings, LowerCased, Symbols, Integers }
