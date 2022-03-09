@@ -1,7 +1,7 @@
 /**
- * @template Value
- * @param {(name: string) => Value} mapper
- * @returns {{ [name: string]: Value }}
+ * @template T
+ * @param {(name: string) => T} mapper
+ * @returns {{ [name: string]: T }}
  */
 const Values = (mapper) =>
   new Proxy(
