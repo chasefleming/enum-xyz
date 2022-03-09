@@ -20,7 +20,7 @@ const Symbols = Values(Symbol)
 
 const Integers = (startIndex = 0) => {
   const indexOfName = new Map()
-  return Values((name) => 
+  return Values((name) =>
     indexOfName.set(name, indexOfName.size + startIndex).get(name)
   )
 }

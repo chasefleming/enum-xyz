@@ -19,13 +19,19 @@
   "unpkg": "dist/enum-xyz.umd.js",
   "scripts": {
     "dev": "microbundle watch",
+    "format": "prettier --write *.{js,json,md}",
     "test": "jest",
     "build": "microbundle",
     "publish": "npm run build && npm publish"
   },
   "license": "ISC",
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
+  },
   "devDependencies": {
     "jest": "^27.5.1",
-    "microbundle": "^0.14.2"
+    "microbundle": "^0.14.2",
+    "prettier": "^2.5.1"
   }
 }
