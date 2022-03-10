@@ -3,7 +3,7 @@
  * @param {(name: string) => T} mapper
  * @returns {{ [name: string]: T }}
  */
-const Values = (mapper) =>
+export const Values = (mapper) =>
   new Proxy(
     {},
     {
@@ -12,17 +12,21 @@ const Values = (mapper) =>
     }
   )
 
-const Strings = Values((name) => name)
+export const Strings = Values((name) => name)
 
-const LowerCased = Values((name) => name.toLowerCase())
+export const LowerCased = Values((name) => name.toLowerCase())
 
-const Symbols = Values(Symbol)
+export const Symbols = Values(Symbol)
 
-const Integers = (startIndex = 0) => {
+export const Counter = (startIndex = 0) => {
+  /** @type {Map<string, number>} */
   const indexOfName = new Map()
-  return Values((name) =>
-    indexOfName.set(name, indexOfName.size + startIndex).get(name)
+  return Values(
+    (name) =>
+      /** @type {!number} nonnull */ (
+        indexOfName.set(name, indexOfName.size + startIndex).get(name)
+      )
   )
 }
 
-export { Values, Strings, LowerCased, Symbols, Integers }
+export const Integers = Counter()

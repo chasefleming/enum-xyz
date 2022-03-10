@@ -17,6 +17,7 @@
   "main": "dist/enum-xyz.cjs",
   "module": "dist/enum-xyz.module.js",
   "unpkg": "dist/enum-xyz.umd.js",
+  "types": "dist/enum-xyz.d.ts",
   "scripts": {
     "dev": "microbundle watch",
     "format": "prettier --write *.{js,json,md}",
