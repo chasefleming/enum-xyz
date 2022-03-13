@@ -21,7 +21,7 @@
   "scripts": {
     "dev": "microbundle watch",
     "format": "prettier --write **/*.{js,json,md} --ignore-path .gitignore",
-    "test": "jest",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "build": "rm -rf dist && microbundle",
     "publish": "npm run build && npm publish"
   },
