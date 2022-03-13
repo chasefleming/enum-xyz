@@ -1,4 +1,6 @@
 {
+  "include": ["src"],
+  "exclude": ["**/*.test.*"],
   "compilerOptions": {
     "declaration": true,
     "declarationMap": true,

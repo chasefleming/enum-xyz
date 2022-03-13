@@ -9,7 +9,7 @@
     "enum",
     "proxy"
   ],
-  "source": "index.js",
+  "source": "src/index.js",
   "exports": {
     "require": "./dist/enum-xyz.cjs",
     "default": "./dist/enum-xyz.modern.js"
@@ -20,9 +20,9 @@
   "types": "dist/enum-xyz.d.ts",
   "scripts": {
     "dev": "microbundle watch",
-    "format": "prettier --write *.{js,json,md}",
+    "format": "prettier --write **/*.{js,json,md} --ignore-path .gitignore",
     "test": "jest",
-    "build": "microbundle",
+    "build": "rm -rf dist && microbundle",
     "publish": "npm run build && npm publish"
   },
   "license": "ISC",
