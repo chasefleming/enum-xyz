@@ -3,7 +3,7 @@
  * @param {(name: string) => T} mapper
  * @returns {{ [name: string]: T }}
  */
-export const Values = (mapper) =>
+export const EnumOf = (mapper) =>
   new Proxy(
     {},
     {
@@ -12,19 +12,19 @@ export const Values = (mapper) =>
     }
   )
 
-export const Strings = Values((name) => name)
+export const Strings = EnumOf((name) => name)
 
-export const LowerCased = Values((name) => name.toLowerCase())
+export const LowerCased = EnumOf((name) => name.toLowerCase())
 
-export const Symbols = Values(Symbol)
+export const Symbols = EnumOf(Symbol)
 
 export const Counter = (startIndex = 0) => {
   /** @type {Map<string, number>} */
-  const indexOfName = new Map()
-  return Values(
+  const indexesByName = new Map()
+  return EnumOf(
     (name) =>
       /** @type {!number} nonnull */ (
-        indexOfName.set(name, indexOfName.size + startIndex).get(name)
+        indexesByName.set(name, indexesByName.size + startIndex).get(name)
       )
   )
 }
