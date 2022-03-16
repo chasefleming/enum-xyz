@@ -1,38 +1,32 @@
-/** @template T @typedef {{ [name: string]: T }} Enum */
-
 /**
- * @template T, [TState=unknown]
- * @param {(name: string, state: TState) => T} mapper should return the same value for the same name
- * @param {TState} [state]
- * @returns {Enum<T>}
+ * @type {import("./types").enumOf}
+ * @param mapper should return the same value for the same name
  */
-export const EnumOf = (mapper, state) =>
+export const enumOf = (mapper, state) =>
   new Proxy(
     {},
     {
-      /** @param {string} name */
-      get: (_, name) => mapper(name, /** @type {!TState} */ (state)),
+      // @ts-ignore
+      get: (_, name) => mapper(name, state),
     }
   )
 
 /**
- * @template T
- * @param {(name: string) => T} mapper always returns the same value for the same name
+ * @type {import("./types").memoEnumOf}
+ * @param mapper always returns the same value for the same name
  */
-export const MemoEnumOf = (mapper) =>
-  EnumOf(
-    (name, map) =>
-      map.get(name) ??
-      /** @type {!T} */ (map.set(name, mapper(name)).get(name)),
-    /** @type {Map<string, T>} */ (new Map())
+export const memoEnumOf = (mapper) =>
+  enumOf(
+    (name, map) => map.get(name) ?? map.set(name, mapper(name)).get(name),
+    new Map()
   )
 
-export const Strings = EnumOf((name) => name)
+export const Strings = enumOf((name) => name)
 
-export const LowerCased = EnumOf((name) => name.toLowerCase())
+export const Lowercased = enumOf((name) => name.toLowerCase())
 
-export const Symbols = MemoEnumOf(Symbol)
+export const Symbols = memoEnumOf(Symbol)
 
-export const Counter = (startIndex = 0) => MemoEnumOf((name) => startIndex++)
+export const Counter = (startIndex = 0) => memoEnumOf((name) => startIndex++)
 
 export const Integers = Counter()

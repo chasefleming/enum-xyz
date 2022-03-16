@@ -20,7 +20,7 @@
   "types": "dist/enum-xyz.d.ts",
   "scripts": {
     "dev": "microbundle watch",
-    "format": "prettier --write **/*.{js,json,md} --ignore-path .gitignore",
+    "format": "prettier --write **/*.{js,json,md,ts} --ignore-path .gitignore",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "build": "rm -rf dist && microbundle",
     "publish": "npm run build && npm publish"

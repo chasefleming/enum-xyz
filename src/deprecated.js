@@ -1,15 +1,8 @@
-import { Counter, EnumOf, Integers, LowerCased, Strings } from './enum-xyz.js'
+import { Counter, enumOf, Integers, Lowercased, Strings } from './enum-xyz.js'
 
-/**
- * @template T
- * @param props {object}
- * @param props.from {string}
- * @param props.to {string}
- * @param props.using {import('./enum-xyz.js').Enum<T>}
- * @returns {import('./enum-xyz.js').Enum<T>}
- */
+/** @type {import("./types").deprecated} */
 const deprecated = ({ from, to, using }) =>
-  EnumOf(
+  enumOf(
     (name) => (
       console.warn(`\`${from}\` is deprecated; use \`${to}\` instead`),
       using[name]
@@ -26,8 +19,8 @@ export const String = deprecated({
 /** @deprecated */
 export const StringLower = deprecated({
   from: 'StringLower',
-  to: 'LowerCased',
-  using: LowerCased,
+  to: 'Lowercased',
+  using: Lowercased,
 })
 
 /** @deprecated */
