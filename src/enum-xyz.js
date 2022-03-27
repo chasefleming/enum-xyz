@@ -1,32 +1,38 @@
-/**
- * @type {import("./types").enumOf}
- * @param mapper should return the same value for the same name
- */
-export const enumOf = (mapper, state) =>
-  new Proxy(
-    {},
-    {
-      // @ts-ignore
-      get: (_, name) => mapper(name, state),
-    }
-  )
+/** @type {import("./types").enumOf} */
+export const enumOf = (getter) => {
+  const handler = getter instanceof Function ? { get: getter } : getter,
+    { get, apply } = handler
+  // must target function to be callable
+  return new Proxy(apply ? () => {} : {}, {
+    ...handler,
+    get: (_, /** @type {string} */ name) => get(name),
+    apply:
+      apply && ((_, _1, /** @type {any} */ args) => apply(handler, ...args)),
+  })
+}
 
-/**
- * @type {import("./types").memoEnumOf}
- * @param mapper always returns the same value for the same name
- */
-export const memoEnumOf = (mapper) =>
-  enumOf(
-    (name, map) => map.get(name) ?? map.set(name, mapper(name)).get(name),
-    new Map()
-  )
+/** @type {import("./types").memoEnumOf} */
+export const memoEnumOf = (getter) => {
+  const handler = getter instanceof Function ? { get: getter } : getter,
+    cache = new Map()
+  return enumOf({
+    ...handler,
+    get: (name) =>
+      cache.get(name) ?? cache.set(name, handler.get(name)).get(name),
+  })
+}
 
 export const Strings = enumOf((name) => name)
 
 export const Lowercased = enumOf((name) => name.toLowerCase())
 
-export const Symbols = memoEnumOf(Symbol)
+export const Symbols = enumOf({
+  get: Symbol.for,
+  apply: () => enumOf(Symbol),
+})
 
-export const Counter = (startIndex = 0) => memoEnumOf((name) => startIndex++)
-
-export const Integers = Counter()
+let nextInteger = 0
+export const Integers = memoEnumOf({
+  get: () => nextInteger++,
+  apply: (_, start = 0) => enumOf(() => start++),
+})

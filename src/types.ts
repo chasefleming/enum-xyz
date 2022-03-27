@@ -3,19 +3,24 @@ export type Enum<T, TKey extends string = string> = { [name in TKey]: T }
 export type Strings<T extends string> = Enum<T, T>
 export type Lowercased<T extends string> = Enum<T, Lowercase<T>>
 
-// enum-xyz.js
-export type enumOf = <T, TState = never>(
-  mapper: (name: string, state: TState) => T,
-  state?: TState
-) => Enum<T>
-export type memoEnumOf = <T>(mapper: (name: string) => T) => Enum<T>
+type MaybeArg = [] | [any]
+export type CallableEnum<T, TArgs extends MaybeArg = []> =
+  // https://www.typescriptlang.org/docs/handbook/2/conditional-types.html#distributive-conditional-types
+  [TArgs] extends [never] ? Enum<T> : Enum<T> & ((...args: TArgs) => Enum<T>)
 
-// deprecated.js
-export type deprecated = <T>(props: {
-  from: string
-  to: string
-  using: Enum<T>
-}) => Enum<T>
+// enum-xyz.js
+type Handler<T, TArgs extends MaybeArg> = {
+  get: (name: string) => T
+  apply?: (handler: Handler<T, TArgs>, ...args: TArgs) => Enum<T>
+} & Omit<ProxyHandler<any>, 'get' | 'apply'>
+
+export type enumOf = <T, TArgs extends MaybeArg = never>(
+  handler: Handler<T, TArgs> | Handler<T, TArgs>['get']
+) => CallableEnum<T, TArgs>
+
+export type memoEnumOf = <T, TArgs extends MaybeArg = never>(
+  handler: Handler<T, TArgs> | Handler<T, TArgs>['get']
+) => CallableEnum<T, TArgs>
 
 // extras.js
 export type actionCreator<TType extends string = string> = {

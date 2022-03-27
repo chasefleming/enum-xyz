@@ -1,42 +1,34 @@
-import { Counter, enumOf, Integers, Lowercased, Strings } from './enum-xyz.js'
-
-/** @type {import("./types").deprecated} */
-const deprecated = ({ from, to, using }) =>
-  enumOf(
-    (name) => (
-      console.warn(`\`${from}\` is deprecated; use \`${to}\` instead`),
-      using[name]
-    )
-  )
-
-/** @deprecated */
-export const String = deprecated({
-  from: 'String',
-  to: 'Strings',
-  using: Strings,
-})
-
-/** @deprecated */
-export const StringLower = deprecated({
-  from: 'StringLower',
-  to: 'Lowercased',
-  using: Lowercased,
-})
-
-/** @deprecated */
-export const Numeric = deprecated({
-  from: 'Numeric',
-  to: 'Integers',
-  using: Integers,
-})
+import { enumOf, Integers, Lowercased, Strings } from './enum-xyz.js'
 
 /**
- * @deprecated
- * @param {number} startIndex
+ * @template T
+ * @param {import("./types").Enum<T>} replacement
+ * @param {string} warning
  */
-export const NumericAt = (startIndex) =>
-  deprecated({
-    from: 'NumericAt',
-    to: 'Counter',
-    using: Counter(startIndex),
-  })
+const deprecated = (replacement, warning) =>
+  enumOf((name) => (console.warn(warning), replacement[name]))
+
+/** @deprecated */
+export const String = deprecated(
+  Strings,
+  '`String` is deprecated; use `Strings` (plural) instead'
+)
+/** @deprecated */
+export const StringLower = deprecated(
+  Lowercased,
+  '`StringLower` is deprecated; use `Lowercased` instead'
+)
+/** @deprecated */
+export const Numeric = deprecated(
+  Integers,
+  '`Numeric` is deprecated; use `Integers` instead'
+)
+/**
+ * @deprecated
+ * @param {number} start
+ */
+export const NumericAt = (start) =>
+  deprecated(
+    Integers(start),
+    '`NumericAt()` is deprecated; use `Integers()` instead'
+  )
