@@ -1,12 +1,9 @@
 import { enumOf, Integers, Lowercased, Strings } from './enum-xyz.js'
 
-/**
- * @template T
- * @param {import("./types").Enum<T>} replacement
- * @param {string} warning
- */
-const deprecated = (replacement, warning) =>
-  enumOf((name) => (console.warn(warning), replacement[name]))
+/** @type {import('./types').deprecated} */
+const deprecated = (mod, warning) =>
+  /** @type {typeof mod} */
+  (enumOf((name) => (console.warn(warning), mod[name])))
 
 /** @deprecated */
 export const String = deprecated(

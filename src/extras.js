@@ -1,5 +1,5 @@
 // re-export type
-/** @template {string} [T=string] @typedef {import("./types").actionCreator<T>} actionCreator */
+/** @template {string} [T=string] @typedef {import('./types').actionCreator<T>} actionCreator */
 import { enumOf, memoEnumOf } from './enum-xyz'
 
 /** @see {@link https://github.com/reduxjs/redux-toolkit/blob/v1.8.0/packages/toolkit/src/createAction.ts#L261-L287|`redux/createAction`} */

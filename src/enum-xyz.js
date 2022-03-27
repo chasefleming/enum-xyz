@@ -1,20 +1,22 @@
-/** @type {import("./types").enumOf} */
+/** @type {import('./types').enumOf} */
 export const enumOf = (getter) => {
   const handler = getter instanceof Function ? { get: getter } : getter,
-    { get, apply } = handler
-  // must target function to be callable
-  return new Proxy(apply ? () => {} : {}, {
+    { get, create } = handler
+
+  // callable proxy must wrap function
+  return new Proxy(create ? () => {} : {}, {
     ...handler,
     get: (_, /** @type {string} */ name) => get(name),
     apply:
-      apply && ((_, _1, /** @type {any} */ args) => apply(handler, ...args)),
+      create && ((_, _1, /** @type {any} */ args) => create(handler, ...args)),
   })
 }
 
-/** @type {import("./types").memoEnumOf} */
+/** @type {import('./types').memoEnumOf} */
 export const memoEnumOf = (getter) => {
   const handler = getter instanceof Function ? { get: getter } : getter,
     cache = new Map()
+
   return enumOf({
     ...handler,
     get: (name) =>
@@ -22,17 +24,17 @@ export const memoEnumOf = (getter) => {
   })
 }
 
-export const Strings = enumOf((name) => name)
+export const Strings = enumOf(String)
 
 export const Lowercased = enumOf((name) => name.toLowerCase())
 
 export const Symbols = enumOf({
   get: Symbol.for,
-  apply: () => enumOf(Symbol),
+  create: () => enumOf(Symbol),
 })
 
 let nextInteger = 0
 export const Integers = memoEnumOf({
   get: () => nextInteger++,
-  apply: (_, start = 0) => enumOf(() => start++),
+  create: (_, /** @type {number} */ start = 0) => enumOf(() => start++),
 })
