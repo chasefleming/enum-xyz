@@ -2,8 +2,9 @@ import { enumOf, Integers, Lowercased, Strings } from './enum-xyz.js'
 
 /** @type {import('./types').deprecated} */
 const deprecated = (mod, warning) =>
-  /** @type {typeof mod} */
-  (enumOf((name) => (console.warn(warning), mod[name])))
+  /** @type {typeof mod} */ (
+    enumOf((name) => (console.warn(warning), mod[name]))
+  )
 
 /** @deprecated */
 export const String = deprecated(

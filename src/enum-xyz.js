@@ -12,7 +12,7 @@ export const enumOf = (getter) => {
   })
 }
 
-/** @type {import('./types').memoEnumOf} */
+/** @type {import('./types').enumOf} */
 export const memoEnumOf = (getter) => {
   const handler = getter instanceof Function ? { get: getter } : getter,
     cache = new Map()
@@ -33,8 +33,9 @@ export const Symbols = enumOf({
   create: () => enumOf(Symbol),
 })
 
-let nextInteger = 0
+// prettier-ignore
+const createCounter = (start = 0) => () => start++
 export const Integers = memoEnumOf({
-  get: () => nextInteger++,
-  create: (_, /** @type {number} */ start = 0) => enumOf(() => start++),
+  get: createCounter(),
+  create: (_, /** @type {number} */ start = 0) => enumOf(createCounter(start)),
 })

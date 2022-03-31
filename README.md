@@ -6,7 +6,7 @@ JavaScript enums using proxies.
 
 ## Install
 
-```
+```sh
 $ npm install enum-xyz --save
 ```
 
@@ -14,7 +14,7 @@ $ npm install enum-xyz --save
 
 ### Strings
 
-```
+```js
 import Enum from 'enum-xyz'
 
 const { Summer, Autumn, Winter, Spring } = Enum.String
@@ -27,7 +27,7 @@ console.log(Spring) // 'Spring'
 
 ### Strings (lowercased)
 
-```
+```js
 import Enum from 'enum-xyz'
 
 const { Summer, Autumn, Winter, Spring } = Enum.StringLower
@@ -40,7 +40,7 @@ console.log(Spring) // 'spring'
 
 ### Numeric
 
-```
+```js
 import Enum from 'enum-xyz'
 
 const { A, B, C, D } = Enum.Numeric
@@ -53,7 +53,7 @@ console.log(D) // 3
 
 ### Numeric Starting at Index
 
-```
+```js
 import Enum from 'enum-xyz'
 
 const { A, B, C, D } = Enum.NumericAt(1)
@@ -63,3 +63,10 @@ console.log(B) // 2
 console.log(C) // 3
 console.log(D) // 4
 ```
+
+## Contributing
+
+### Suggested VS Code Extensions
+
+- [Jest](https://marketplace.visualstudio.com/items?itemName=Orta.vscode-jest) - [Test Explorer](https://code.visualstudio.com/updates/v1_59#_testing-apis) integration
+- [JSDoc Markdown highlighting](https://marketplace.visualstudio.com/items?itemName=bierner.jsdoc-markdown-highlighting) - `@example` syntax highlighting (some lines require semicolons)

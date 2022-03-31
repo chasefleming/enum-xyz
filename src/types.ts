@@ -1,17 +1,44 @@
-// index.js
-export type Enum<T, TKey extends string = string> = { [name in TKey]: T }
-export type Strings<T extends string> = Enum<T, T>
-export type Lowercased<T extends string> = Enum<T, Lowercase<T>>
+/**
+ * @example
+ * type Trinary = 'True' | 'False' | 'Maybe';
+ * const { Maybe } = Strings as Strings_<Trinary>
+ * console.assert(Maybe === 'Maybe')
+ */
+export type Strings_<T extends string> = Enum<T, T>
 
-type MaybeArg = [] | [any?]
-export type CallableEnum<T, TArgs extends MaybeArg = []> =
+/**
+ * @example
+ * type Trinary = 'True' | 'False' | 'Maybe';
+ * const { Maybe } = Lowercased as Lowercased_<Trinary>
+ * console.assert(Maybe === 'maybe')
+ */
+export type Lowercased_<T extends string> = Enum<Lowercase<T>, T>
+
+/**
+ * @example
+ * const Positives: Enum<number> = Integers(1) // inferable
+ * const { First } = Positives
+ * console.assert(First === 1)
+ */
+export type Enum<T, TKey extends string = string> = { [name in TKey]: T }
+
+/**
+ * @example
+ * let count = -1
+ * export const Negatives: CallableEnum<number> = memoEnumOf({ // inferable
+ *   get: () => count--,
+ *   create: () => { let count = -1; return enumOf(() => count--) },
+ * })
+ * const { First } = Negatives()
+ * console.assert(First === -1)
+ */
+export type CallableEnum<T, TArgs extends unknown[] = []> =
   // https://www.typescriptlang.org/docs/handbook/2/conditional-types.html#distributive-conditional-types
   [TArgs] extends [never] ? Enum<T> : Enum<T> & ((...args: TArgs) => Enum<T>)
 
-// enum-xyz.js
-type Handler<T, TArgs extends MaybeArg> = {
+type Handler<T, TArgs extends unknown[]> = {
   get: (name: string) => T
-  // https://twitter.com/texastoland/status/1508082132186693632?s=20&t=BAERXB6r_JQyQyYBvSULDw
+  // https://github.com/microsoft/TypeScript/issues/48474
   create?: (
     // recursive Handler['create'] would break TArgs inference
     handler: Omit<Handler<T, TArgs>, 'create'>,
@@ -19,21 +46,15 @@ type Handler<T, TArgs extends MaybeArg> = {
   ) => Enum<T>
 } & Omit<ProxyHandler<any>, 'get' | 'apply'>
 
-export type enumOf = <T, TArgs extends MaybeArg = never>(
+export type enumOf = <T, TArgs extends unknown[] = never>(
   getter: Handler<T, TArgs> | Handler<T, TArgs>['get']
 ) => CallableEnum<T, TArgs>
 
-export type memoEnumOf = <T, TArgs extends MaybeArg = never>(
-  getter: Handler<T, TArgs> | Handler<T, TArgs>['get']
-) => CallableEnum<T, TArgs>
-
-// deprecated.js
 export type deprecated = <T, TEnum extends Enum<T>>(
   mod: TEnum,
   warning: string
 ) => TEnum
 
-// extras.js
 export type actionCreator<TType extends string = string> = {
   <T, TMeta = never>(payload: T, props: { meta: TMeta; error: boolean }): {
     type: TType
