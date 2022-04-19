@@ -19,7 +19,7 @@
   "unpkg": "dist/enum-xyz.umd.js",
   "scripts": {
     "dev": "microbundle watch",
-    "test": "jest",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "build": "microbundle",
     "publish": "npm run build && npm publish"
   },

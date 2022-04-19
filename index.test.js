@@ -1,4 +1,4 @@
-const Enum = require('./index')
+import * as Enum from './index'
 
 test('creates enum and assigns strings', () => {
   const { Summer, Autumn, Winter, Spring } = Enum.String

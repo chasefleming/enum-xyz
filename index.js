@@ -28,4 +28,4 @@ const NumericAt = (startIndex) => {
   })
 }
 
-module.exports = {String, StringLower, Numeric, NumericAt}
+export {String, StringLower, Numeric, NumericAt}
