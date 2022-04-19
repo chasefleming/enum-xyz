@@ -15,7 +15,7 @@ $ npm install enum-xyz --save
 ### Strings
 
 ```
-import Enum from 'enum-xyz'
+import * as Enum 'enum-xyz'
 
 const { Summer, Autumn, Winter, Spring } = Enum.String
 
@@ -28,7 +28,7 @@ console.log(Spring) // 'Spring'
 ### Strings (lowercased)
 
 ```
-import Enum from 'enum-xyz'
+import * as Enum 'enum-xyz'
 
 const { Summer, Autumn, Winter, Spring } = Enum.StringLower
 
@@ -41,7 +41,7 @@ console.log(Spring) // 'spring'
 ### Numeric
 
 ```
-import Enum from 'enum-xyz'
+import * as Enum 'enum-xyz'
 
 const { A, B, C, D } = Enum.Numeric
 
@@ -54,7 +54,7 @@ console.log(D) // 3
 ### Numeric Starting at Index
 
 ```
-import Enum from 'enum-xyz'
+import * as Enum 'enum-xyz'
 
 const { A, B, C, D } = Enum.NumericAt(1)
 
