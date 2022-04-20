@@ -1,4 +1,4 @@
-import * as Enum from './index'
+import Enum from './index'
 
 test('creates enum and assigns strings', () => {
   const { Summer, Autumn, Winter, Spring } = Enum.String

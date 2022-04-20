@@ -28,4 +28,5 @@ const NumericAt = (startIndex) => {
   })
 }
 
-export {String, StringLower, Numeric, NumericAt}
+const Enum = { String, StringLower, Numeric, NumericAt }
+export { Enum as default, String, StringLower, Numeric, NumericAt }
