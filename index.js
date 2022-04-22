@@ -19,5 +19,9 @@ const NumericAt = (startIndex) => {
 
 const Numeric = NumericAt(0)
 
-const Enum = { String, StringLower, Numeric, NumericAt }
-export { Enum as default, String, StringLower, Numeric, NumericAt }
+const SymbolFn = new Proxy({}, {
+  get: (_, name) => Symbol(name)
+})
+
+const Enum = { String, StringLower, Numeric, NumericAt, Symbol: SymbolFn }
+export { Enum as default, String, StringLower, Numeric, NumericAt, SymbolFn as Symbol }
