@@ -38,7 +38,7 @@ console.log(Winter) // 'winter'
 console.log(Spring) // 'spring'
 ```
 
-### Numeric
+### Numerics
 
 ```
 import Enum from 'enum-xyz'
@@ -51,7 +51,7 @@ console.log(C) // 2
 console.log(D) // 3
 ```
 
-### Numeric Starting at Index
+### Numerics Starting at Index
 
 ```
 import Enum from 'enum-xyz'
@@ -62,4 +62,15 @@ console.log(A) // 1
 console.log(B) // 2
 console.log(C) // 3
 console.log(D) // 4
+```
+
+### Symbols
+
+```
+import Enum from 'enum-xyz'
+
+const { blue, red } = Enum.Symbol
+
+console.log(blue) // Symbol(blue) 
+console.log(red) // Symbol(red)
 ```
