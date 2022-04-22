@@ -35,3 +35,14 @@ test('creates enum and assigns numeric value starting at index of choice', () =>
   expect(C).toBe(3)
   expect(D).toBe(4)
 })
+
+test('creates enum and assigns symbol values', () => {
+  const { blue, red } = Enum.Symbol
+  const { blue: blueMood, happy } = Enum.Symbol
+
+  expect(blue).toBe(blue)
+  expect(blue).not.toBe(red)
+  expect(blue).not.toBe(blueMood)
+  expect(blue).not.toBe('blue')
+  expect(blue).not.toBe(Symbol('blue'))
+})
