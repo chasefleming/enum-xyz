@@ -4,6 +4,8 @@ JavaScript enums using proxies.
 
 > Based on [this tweet](https://twitter.com/2ality/status/1486139713354448897)
 
+[![ENUM-XYZ Continuous Integration](https://github.com/chasefleming/enum-xyz/actions/workflows/integrate.yml/badge.svg)](https://github.com/chasefleming/enum-xyz/actions/workflows/integrate.yml)
+
 ## Install
 
 ```
