@@ -6,7 +6,7 @@ JavaScript enums using proxies.
 
 [![ENUM-XYZ Continuous Integration](https://github.com/chasefleming/enum-xyz/actions/workflows/integrate.yml/badge.svg)](https://github.com/chasefleming/enum-xyz/actions/workflows/integrate.yml)
 
-Note: This library is not yet at version 1.0.0. As such, breaking changes may occur in subsequent releases. Please ensure you read the release notes when updating.
+> Note: This library is not yet at version 1.0.0. As such, breaking changes may occur in subsequent releases. Please ensure you read the release notes when updating.
 
 ## Install
 
