@@ -1,27 +1,29 @@
-const String = new Proxy({}, {
-  get: (_, name) => name
-})
+const createEnum = (type, startIndex = 0) => {
+  let currentIndex = startIndex
 
-const StringLower = new Proxy({}, {
-  get: (_, name) => name.toLowerCase()
-})
-
-const NumericAt = (startIndex) => {
-  const arr = [...Array(startIndex).keys()]
-  
-  return new Proxy({}, {
-    get: (_, name) => {
-      arr.push(name)
-      return arr.indexOf(name)
+  const handler = {
+    get(_, name) {
+      if (type === 'String') {
+        return name
+      }
+      if (type === 'Numeric') {
+        const current = currentIndex
+        currentIndex++
+        return current
+      }
+      if (type === 'Symbol') {
+        return Symbol(name)
+      }
+      // For grouping, return another proxy
+      return new Proxy({}, handler)
     }
-  })
+  }
+
+  return new Proxy({}, handler)
 }
 
-const Numeric = NumericAt(0)
-
-const SymbolFn = new Proxy({}, {
-  get: (_, name) => Symbol(name)
-})
-
-const Enum = { String, StringLower, Numeric, NumericAt, Symbol: SymbolFn }
-export { Enum as default, String, StringLower, Numeric, NumericAt, SymbolFn as Symbol }
+export default {
+  String: () => createEnum('String'),
+  Numeric: (startIndex = 0) => createEnum('Numeric', startIndex),
+  Symbol: () => createEnum('Symbol')
+}
