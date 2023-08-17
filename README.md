@@ -6,6 +6,8 @@ JavaScript enums using proxies.
 
 [![ENUM-XYZ Continuous Integration](https://github.com/chasefleming/enum-xyz/actions/workflows/integrate.yml/badge.svg)](https://github.com/chasefleming/enum-xyz/actions/workflows/integrate.yml)
 
+Note: This library is not yet at version 1.0.0. As such, breaking changes may occur in subsequent releases. Please ensure you read the release notes when updating.
+
 ## Install
 
 ```
@@ -14,65 +16,48 @@ $ npm install enum-xyz --save
 
 ## Usage
 
-### Strings
+### String Enums
 
 ```
-import Enum from 'enum-xyz'
+import Enum from "enum-xyz"
 
-const { Summer, Autumn, Winter, Spring } = Enum.String
+const { Summer, Autumn, Winter, Spring } = Enum.String();
 
-console.log(Summer) // 'Summer'
-console.log(Autumn) // 'Autumn'
-console.log(Winter) // 'Winter'
-console.log(Spring) // 'Spring'
+console.log(Summer); // Outputs: "Summer"
+console.log(Autumn); // Outputs: "Autumn"
+console.log(Winter); // Outputs: "Winter"
+console.log(Spring); // Outputs: "Spring"
 ```
 
-### Strings (lowercased)
+### Numeric Enums
+
+Starts from 0 by default:
 
 ```
-import Enum from 'enum-xyz'
+import Enum from "enum-xyz"
 
-const { Summer, Autumn, Winter, Spring } = Enum.StringLower
+const { A, B, C, D } = Enum.Numeric()
 
-console.log(Summer) // 'summer'
-console.log(Autumn) // 'autumn'
-console.log(Winter) // 'winter'
-console.log(Spring) // 'spring'
+console.log(A); // Outputs: 0
+console.log(B); // Outputs: 1
+console.log(C); // Outputs: 2
+console.log(D); // Outputs: 3
 ```
 
-### Numerics
+To start from a different index:
 
 ```
-import Enum from 'enum-xyz'
-
-const { A, B, C, D } = Enum.Numeric
-
-console.log(A) // 0
-console.log(B) // 1
-console.log(C) // 2
-console.log(D) // 3
+const { A, B, C, D } = Enum.Numeric(5);
+console.log(A); // Outputs: 5
 ```
 
-### Numerics Starting at Index
+### Symbol Enums
 
 ```
-import Enum from 'enum-xyz'
+import Enum from "enum-xyz"
 
-const { A, B, C, D } = Enum.NumericAt(1)
+const { blue, red } = Enum.Symbol();
 
-console.log(A) // 1
-console.log(B) // 2
-console.log(C) // 3
-console.log(D) // 4
-```
-
-### Symbols
-
-```
-import Enum from 'enum-xyz'
-
-const { blue, red } = Enum.Symbol
-
-console.log(blue) // Symbol(blue) 
-console.log(red) // Symbol(red)
+console.log(blue); // Outputs: Symbol(blue)
+console.log(red);  // Outputs: Symbol(red)
 ```
