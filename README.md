@@ -19,7 +19,7 @@ $ npm install enum-xyz --save
 ### String Enums
 
 ```
-import Enum from "enum-xyz"
+import Enum from "enum-xyz";
 
 const { Summer, Autumn, Winter, Spring } = Enum.String();
 
@@ -34,9 +34,9 @@ console.log(Spring); // Outputs: "Spring"
 Starts from 0 by default:
 
 ```
-import Enum from "enum-xyz"
+import Enum from "enum-xyz";
 
-const { A, B, C, D } = Enum.Numeric()
+const { A, B, C, D } = Enum.Numeric();
 
 console.log(A); // Outputs: 0
 console.log(B); // Outputs: 1
@@ -54,7 +54,7 @@ console.log(A); // Outputs: 5
 ### Symbol Enums
 
 ```
-import Enum from "enum-xyz"
+import Enum from "enum-xyz";
 
 const { blue, red } = Enum.Symbol();
 
