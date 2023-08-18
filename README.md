@@ -24,9 +24,25 @@ import Enum from "enum-xyz";
 const { Summer, Autumn, Winter, Spring } = Enum.String();
 
 console.log(Summer); // Outputs: "Summer"
-console.log(Autumn); // Outputs: "Autumn"
-console.log(Winter); // Outputs: "Winter"
-console.log(Spring); // Outputs: "Spring"
+```
+
+#### Options for String Enums:
+
+- `casing`: Transforms the string based on the specified casing style. Available options are `snakeCase`, `camelCase`, `PascalCase`, `kebabCase`, `lowercase`, and `uppercase`.
+- `transform`: Provide a custom function to transform the enum values. This function takes the original value and returns a transformed value.
+
+##### Example:
+
+```
+const { userId, userAddress } = Enum.String({ casing: 'kebabCase' });
+console.log(userId); // Outputs: "user-id"
+
+const options = {
+  casing: 'kebabCase',
+  transform: (value) => `https://api.example.com/${value}`
+};
+const { userEndpoint, orderEndpoint } = Enum.String(options);
+console.log(userEndpoint); // Outputs: "https://api.example.com/user-endpoint"
 ```
 
 ### Numeric Enums
@@ -39,16 +55,19 @@ import Enum from "enum-xyz";
 const { A, B, C, D } = Enum.Numeric();
 
 console.log(A); // Outputs: 0
-console.log(B); // Outputs: 1
-console.log(C); // Outputs: 2
-console.log(D); // Outputs: 3
 ```
 
-To start from a different index:
+#### Options for Numeric Enums:
+
+- `startIndex`: Start the numeric enum from a specific index.
+- `step`: Increment the numeric values by a specific step (e.g., 2, 5, 10).
+
+##### Example:
 
 ```
-const { A, B, C, D } = Enum.Numeric(5);
+const { A, B, C } = Enum.Numeric({ startIndex: 5, step: 2 });
 console.log(A); // Outputs: 5
+console.log(B); // Outputs: 7
 ```
 
 ### Symbol Enums
@@ -59,5 +78,15 @@ import Enum from "enum-xyz";
 const { blue, red } = Enum.Symbol();
 
 console.log(blue); // Outputs: Symbol(blue)
-console.log(red);  // Outputs: Symbol(red)
+```
+
+#### Options for Symbol Enums:
+
+- `global`: Create a global symbol using Symbol.for().
+
+##### Example:
+
+```
+const { blueGlobal } = Enum.Symbol({ global: true });
+console.log(blueGlobal); // Outputs: Symbol.for('blueGlobal')
 ```
