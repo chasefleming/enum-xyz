@@ -1,6 +1,6 @@
 # enum-xyz
 
-JavaScript enums using proxies.
+`enum-xyz` offers a way to generate enums in JavaScript leveraging the power of Proxies. It supports various casing styles, transformations, and other customization options.
 
 > Based on [this tweet](https://twitter.com/2ality/status/1486139713354448897)
 
