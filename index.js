@@ -26,6 +26,12 @@ const createEnum = (type, options = {}) => {
 
     // Apply casing transformations
     switch (options.casing) {
+      case 'lowercase':
+        value = value.toLowerCase();
+        break;
+      case 'uppercase':
+        value = value.toUpperCase();
+        break;
       case 'camelCase':
         value = toCamelCase(value);
         break;

@@ -9,7 +9,25 @@ describe('String Enums', () => {
     expect(Winter).toEqual('Winter')
     expect(Spring).toEqual('Spring')
   })
+
+  test('creates enum with lowercase casing', () => {
+    const { Summer, Autumn, Winter, Spring } = Enum.String({ casing: "lowercase" })
   
+    expect(Summer).toEqual('summer')
+    expect(Autumn).toEqual('autumn')
+    expect(Winter).toEqual('winter')
+    expect(Spring).toEqual('spring')
+  })
+  
+  test('creates enum with uppercase casing', () => {
+    const { Summer, Autumn, Winter, Spring } = Enum.String({ casing: "uppercase" })
+  
+    expect(Summer).toEqual('SUMMER')
+    expect(Autumn).toEqual('AUTUMN')
+    expect(Winter).toEqual('WINTER')
+    expect(Spring).toEqual('SPRING')
+  })
+
   test('creates enum with snakeCase casing', () => {
     const { userId, userAddress, orderNumber } = Enum.String({ casing: 'snakeCase' })
   

@@ -1,7 +1,7 @@
 {
   "name": "enum-xyz",
   "type": "module",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "JavaScript enums using proxies.",
   "homepage": "https://github.com/chasefleming/enum-xyz",
   "author": "Chase Fleming",
@@ -21,7 +21,7 @@
     "dev": "microbundle watch",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "build": "microbundle",
-    "publish": "npm run build && npm publish"
+    "prepublishOnly": "npm test && npm run build"
   },
   "license": "ISC",
   "devDependencies": {
