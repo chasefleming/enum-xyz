@@ -21,7 +21,7 @@
     "dev": "microbundle watch",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "build": "microbundle",
-    "publish": "npm run build && npm publish"
+    "prepublishOnly": "npm test && npm run build"
   },
   "license": "ISC",
   "devDependencies": {
